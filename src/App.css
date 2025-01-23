@@ -59,3 +59,30 @@
   opacity: 0;
   transition: transform 500ms, opacity 500ms;
 }
+
+.loading-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: linear-gradient(135deg, #6b6a6a, #1a1a1a)
+}
+
+.loading-bar {
+  width: 50%;
+  height: 4px;
+  background-color: #ffffff;
+  animation: loading 2s linear infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

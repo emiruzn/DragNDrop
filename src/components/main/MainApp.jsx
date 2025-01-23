@@ -15,6 +15,13 @@ const MainApp = ({ onLogout }) => {
     position: { x: 0, y: 0 },
   });
 
+  const handleDelete = (id) => {
+    setDroppedComponents((prevComponents) =>
+      prevComponents.filter((comp) => comp.id !== featurePanel.componentId)
+    );
+    closeFeaturePanel();
+  };
+
   const handleDragStart = (e, component) => {
     e.dataTransfer.setData('component', component);
     e.dataTransfer.setData('type', 'new');
@@ -121,6 +128,7 @@ const MainApp = ({ onLogout }) => {
     setFeaturePanel({ isOpen: false, componentId: null, position: { x: 0, y: 0 } });
   };
 
+
   const renderComponent = (comp) => {
     switch (comp.type) {
       case 'Image Upload':
@@ -139,6 +147,34 @@ const MainApp = ({ onLogout }) => {
         return <Checkbox />;
       default:
         return null;
+    }
+  };
+
+  const handleComponentClick = (e, id) => {
+    const component = droppedComponents.find((comp) => comp.id === id);
+    if (component.events?.onClick) {
+      switch (component.events.onClick) {
+        case 'alert':
+          alert('Component clicked!');
+          break;
+        case 'log':
+          console.log('Component clicked:', component);
+          break;
+        case 'custom':
+          // Implement custom logic here
+          if (component.events?.customScript) {
+            try {
+              // Use Function for safer script execution
+              const customFunction = new Function(component.events.customScript);
+              customFunction();
+            } catch (error) {
+              console.error('Error executing custom script:', error);
+            }
+          }
+          break;
+        default:
+          break;
+      }
     }
   };
 
@@ -179,13 +215,14 @@ const MainApp = ({ onLogout }) => {
               border: `2px solid ${comp.borderColor}`,
               position: 'absolute',
               borderRadius: '10%',
-              visibility: comp.isDragging ? 'hidden' : 'visible', // Add this line
+              visibility: comp.isDragging ? 'hidden' : 'visible',
             }}
             draggable
             onDragStart={(e) => handleDragStartExisting(e, comp.id)}
-            onDrag={(e) => handleDrag(e, comp.id)} // Add this line
-            onDragEnd={(e) => handleDragEnd(e, comp.id)} // Add this line
+            onDrag={(e) => handleDrag(e, comp.id)}
+            onDragEnd={(e) => handleDragEnd(e, comp.id)} 
             onContextMenu={(e) => handleRightClick(e, comp.id)}
+            onClick={(e) => handleComponentClick(e, comp.id)}
           >
             {renderComponent(comp)}
           </div>
@@ -199,6 +236,7 @@ const MainApp = ({ onLogout }) => {
           component={droppedComponents.find((comp) => comp.id === featurePanel.componentId)}
           onClose={closeFeaturePanel}
           onUpdate={handleFeatureChange}
+          onDelete={handleDelete}
         />
       )}
     </div>

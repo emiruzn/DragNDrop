@@ -2,6 +2,8 @@
 
 This project is a React-based Single Page Application (SPA) that allows users to create interactive designs by dragging and dropping components. Users can customize component properties such as position, size, style, and events, and save their designs for future editing. The app leverages the HTML Drag and Drop API for seamless functionality without external libraries.
 
+Project Demo Video (Duration 5min): https://drive.google.com/file/d/1Xm4r8OWaOyrE2jFNea7aAgXfn2CQbvYe/view?usp=sharing
+
 ## Getting Started
 
 Follow these steps to set up and run the project locally:

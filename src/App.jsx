@@ -8,6 +8,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Simulate loading screen
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -16,10 +17,12 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Handle login success
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
   };
 
+  // Handle logout
   const handleLogout = () => {
     setIsLoggedIn(false);
   };

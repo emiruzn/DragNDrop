@@ -1,7 +1,8 @@
 import React from 'react';
-import addPhotoIcon from '../../assets/add_photo.svg'; // Adjust the path as necessary
+import addPhotoIcon from '../../assets/add_photo.svg';
 import './ImageUpload.css';
 
+// ImageUpload component for uploading and displaying images
 const ImageUpload = ({ id, image, onImageChange }) => {
   const handleImageUpload = (event) => {
     const file = event.target.files[0];

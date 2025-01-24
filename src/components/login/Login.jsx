@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Login.css';
 
+
+// Login component with basic authentication
 const Login = ({ onLoginSuccess }) => {
     const [formData, setFormData] = useState({ username: '', password: '' });
     const [error, setError] = useState('');

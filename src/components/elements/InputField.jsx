@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './InputField.css';
 
-const InputField = () => {
-  const [text, setText] = useState('');
+// InputField component with dynamic resizing
+const InputField = ({id, value, onFieldChange}) => {
+  const [text, setText] = useState(value || '');
   const maxChars = 100; // Set the maximum number of characters
 
   const handleInputChange = (e) => {
@@ -11,6 +12,7 @@ const InputField = () => {
       e.target.style.height = 'auto';
       e.target.style.height = `${e.target.scrollHeight}px`;
     }
+    onFieldChange(e);
   };
 
   return (

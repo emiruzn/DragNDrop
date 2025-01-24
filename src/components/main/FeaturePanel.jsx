@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './FeaturePanel.css';
 
+
+// FeaturePanel component for editing properties of dropped components
 const FeaturePanel = ({
   position,
   component,

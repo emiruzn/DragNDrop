@@ -12,6 +12,7 @@
   border-right: 1px solid #ccc;
   padding: 20px;
   box-sizing: border-box;
+  position: relative; /* Add this line */
 }
 
 .left-panel h3 {
@@ -82,4 +83,15 @@
   position: relative;
   overflow: hidden;
   border: 1px solid #1a1a1a; /* Darker border color */
+}
+
+.button-container {
+  position: absolute;
+  bottom: 20px;
+  left: 0; /* Adjust to align with the left panel */
+  right: 0; /* Adjust to align with the left panel */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 20px; /* Add padding to match the left panel's padding */
 }

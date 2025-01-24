@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import './Checkbox.css';
 
-const Checkbox = () => {
+const Checkbox = ({ id, checked, onCheckChange }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const Checkbox = () => {
   return (
     <div className="checkbox-container" ref={containerRef}>
       <label>
-        <input type="checkbox" />
+        <input type="checkbox" checked={checked} onChange={onCheckChange} />
       </label>
     </div>
   );
